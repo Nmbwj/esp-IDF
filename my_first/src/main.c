@@ -1,5 +1,5 @@
 #include <stdio.h>
 void app_main() {
-    printf("hello world\n");
+    printf("hello naol\n");
     fflush(stdout);
 }
