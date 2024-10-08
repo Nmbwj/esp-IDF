@@ -6,7 +6,7 @@
 #include "driver/ledc.h"
 
 #define SAMPLE_CNT 32
-static const adc1_channel_t adc_channel = ADC1_CHANNEL_6;
+//static const adc1_channel_t adc_channel = ADC1_CHANNEL_6;
 
 #define LEDC_GPIO 17
 
@@ -14,8 +14,8 @@ static ledc_channel_config_t ledc_channel;
 
 static void init_hw(void)
 {
-    adc1_config_width(ADC_WIDTH_BIT_10);
-    adc1_config_channel_atten(adc_channel, ADC_ATTEN_DB_11);
+    //adc1_config_width(ADC_WIDTH_BIT_10);
+    //adc1_config_channel_atten(adc_channel, ADC_ATTEN_DB_11);
 
     ledc_timer_config_t ledc_timer = {
         .duty_resolution = LEDC_TIMER_10_BIT,
@@ -44,7 +44,7 @@ void app_main()
     uint32_t adc_val = 0;
     while (1)
     {
-        if(adc_val < 1024) ++adc_val;
+        if(adc_val < 1024) adc_val += 100;
         else adc_val = 0;
 
         ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, adc_val);
